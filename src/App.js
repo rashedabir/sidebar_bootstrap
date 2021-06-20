@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./components/Dashboard";
+import Header from "./components/Header";
+import { useState } from "react";
 
 function App() {
+  const [active, setActive] = useState(false);
+  console.log(active);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Sidebar active={active} />
+      <Header active={active} setActive={setActive} />
+      <div
+        className={
+          active
+            ? "content_active page-content p-5 mt-5"
+            : "page-content p-5 mt-5 content"
+        }
+      >
+        <Dashboard />
+      </div>
     </div>
   );
 }
